@@ -1,6 +1,6 @@
 ## Description
 
-Simple Cafe API built for learning purpose.
+Simple Cafe API built for learning purpose. You can modify this project as you please for learning purpose,
 
 ## Installation
 
