@@ -7,6 +7,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { CreateOrderDto } from './dto/createOrder.dto';
+import { UpdateOrderDto } from './dto/updateOrder.dto';
 import { OrdersService } from './orders.service';
 
 @Controller('orders')
@@ -16,10 +18,7 @@ export class OrdersController {
   @Post()
   createOrder(
     @Body()
-    orderData: {
-      totalPrice: number;
-      items: { productId: number; quantity: number }[];
-    },
+    orderData: CreateOrderDto,
   ) {
     return this.ordersService.create(orderData);
   }
@@ -34,8 +33,12 @@ export class OrdersController {
     return this.ordersService.findOne(Number(id));
   }
 
+  // Can only update the status of an order
   @Put(':id')
-  updateOrderStatus(@Param('id') id: string, @Body() updateData: any) {
+  updateOrderStatus(
+    @Param('id') id: string,
+    @Body() updateData: UpdateOrderDto,
+  ) {
     return this.ordersService.updateStatus(Number(id), updateData.status);
   }
 
